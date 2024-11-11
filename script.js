@@ -12,12 +12,9 @@ const convertMode = document.getElementById("convert-mode");
 const exchangeMode = document.getElementById("exchange-mode");
 const toggleBtns = document.querySelectorAll(".toggle-btn");
 
-
-const apiKey = "b46f38793af093192c0faf54";
-
+const apiKey = "fa24547fd8060fc7599e5119";
 
 toggleBtns.forEach((btn) => {
-
     btn.addEventListener("click", () => {
         toggleBtns.forEach((btn) => btn.classList.remove("active"));
         btn.classList.add("active");
@@ -32,20 +29,16 @@ toggleBtns.forEach((btn) => {
     });
 });
 
-
 convertBtn.addEventListener("click", () => {
-
     const amount = amountInput.value;
     const from = fromCurrency.value;
     const to = toCurrency.value;
-
 
     fetch(`https://v6.exchangerate-api.com/v6/${apiKey}/pair/${from}/${to}`)
         .then((response) => {
             return response.json();
         })
         .then((data) => {
-
             const rate = data.conversion_rate;
             const convertedAmount = (amount * rate).toFixed(2);
             result.innerHTML = `<span class="currency-icon"></span>${convertedAmount} ${to}`;
@@ -56,11 +49,8 @@ convertBtn.addEventListener("click", () => {
         });
 });
 
-
 getRatesBtn.addEventListener("click", () => {
-
     const base = baseCurrency.value;
-
     fetch(`https://v6.exchangerate-api.com/v6/${apiKey}/latest/${base}`)
         .then((response) => {
             return response.json();
